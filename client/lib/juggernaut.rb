@@ -23,9 +23,9 @@ module Juggernaut
     options[:url] = url
   end
   
-  def publish(channels, data, options = {})
+  def publish(channels, data, options = {}, k)
     message = ({:channels => Array(channels).uniq, :data => data}).merge(options)
-    redis.publish(key, message.to_json) 
+    redis.publish(key(k), message.to_json) 
   end
   
   def subscribe
